@@ -9,7 +9,7 @@ if __name__ == "__main__":
         while True:
             board.getData(MultiWii.MOTOR)
 
-            message = "m1 = {:+.2f} \t m2 = {:+.2f} \t m3 = {:+.2f} \t m4 = {:+.4f} \t".format(float(board.motor['m1']),float(board.motor['m2']),float(board.motor['m3']),float(board.motor['m4']))
+            message = "m1 = {:+.2f} \t m2 = {:+.2f} \t m3 = {:+.2f} \t m4 = {:+.4f} \t".format(float(board.motor['m1']),float(board.motor['m2']),float(board.motor['m3']),float(board.motor['m4'],float(board.attitude['elapsed']))
             stdout.write("\r%s" % message )
             stdout.flush()
 
