@@ -78,6 +78,7 @@ class MultiWii:
         self.temp2 = ()
         self.elapsed = 0
         self.PRINT = 1
+        self.noBoard = False
 
         self.ser = serial.Serial()
         self.ser.port = ser_port
