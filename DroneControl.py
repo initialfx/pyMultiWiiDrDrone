@@ -1,10 +1,11 @@
 from multiprocessing import Process
 from pyMultiwii import MultiWii
+import time
 
 
 class DroneControl:
     # Roll Pitch Yaw Throttle Aux1 Aux2 Aux3 Aux4
-    rc_data = [1500, 1500, 1500, 1500, 1000, 1000, 1000, 1000]
+    rc_data = [1500, 1500, 1500, 1000, 1000, 1000, 1000, 1000]
 
     ROLL = 0
     PITCH = 1
@@ -27,7 +28,11 @@ class DroneControl:
 
     def __init__(self, board):
         self.board = board
+        self.armed = False
         Process(target=self._update_drone).start()
+
+    def set_armed(self, value):\
+        self.armed = value
 
     def set_value(self, rc_type, value):
         self.rc_data[rc_type] = value
@@ -47,4 +52,6 @@ class DroneControl:
 
     def _update_drone(self):
         while True:
-            self.board.sendCMD(16, MultiWii.SET_RAW_RC, self.rc_data)
+            if self.armed:
+                self.board.sendCMD(16, MultiWii.SET_RAW_RC, self.rc_data)
+                time.sleep(0.5)

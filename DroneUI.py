@@ -24,6 +24,7 @@ def arm():
         board.disarm()
         armed = False
 
+    drone.set_armed(armed)
     status = 'armed' if armed else 'disarmed'
     return jsonify({'status': status})
 
@@ -94,4 +95,4 @@ if __name__ == '__main__':
     # Get the constant values
     board.getData(MultiWii.MISC)
     drone = DroneControl(board)
-    app.run(host='0.0.0.0', port=80)
+    app.run(host='0.0.0.0')
